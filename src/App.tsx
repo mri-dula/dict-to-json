@@ -1,7 +1,7 @@
 import './App.css'
 import Converter from './components/Converter'
-function App() {
 
+function App() {
   return (
     <>
       <Converter></Converter>
