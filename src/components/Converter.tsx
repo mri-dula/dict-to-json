@@ -7,12 +7,12 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import avatar from '../assets/avatar.png';
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from 'axios';
 
 export default function Converter() {
-  const [dict, setDict] = useState(null);
-  const [json, setJson] = useState(null);
+  const [dict, setDict] = useState<string>();
+  const [json, setJson] = useState<string>();
   const api_server_url = import.meta.env.VITE_API_SERVER_URL;
   const sendConvertAndMinifyRequest = () => {
     axios.post(api_server_url + 'convert_and_minify', {
