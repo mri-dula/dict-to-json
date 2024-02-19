@@ -3,7 +3,6 @@
  * @see https://v0.dev/t/fMteUPvGJ18
  */
 import { CardHeader, CardContent, Card } from "@/components/ui/card"
-import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import avatar from '../assets/avatar.png';
@@ -68,6 +67,7 @@ export default function Converter() {
                 height="250px"
                 readOnly={true}
                 lang="javascript"
+
               />
             </div>
           </div>
