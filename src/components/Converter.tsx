@@ -9,6 +9,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import avatar from '../assets/avatar.png';
 import { useState } from "react";
 import axios from 'axios';
+import CodeMirror from "@uiw/react-codemirror";
 
 export default function Converter() {
   const [dict, setDict] = useState<string>();
@@ -22,8 +23,10 @@ export default function Converter() {
         setJson(response.data)
       })
       .catch(function (error) {
-        console.log(error);
-        alert("Sorry, could not process your request.")
+        if (error.response.status == 400) {
+          console.log(error.response.data.detail)
+          alert("Sorry, could not process your request.")
+        }
       });
   }
 
@@ -35,8 +38,10 @@ export default function Converter() {
         setJson(response.data)
       })
       .catch(function (error) {
-        console.log(error);
-        alert("Sorry, could not process your request.")
+        if (error.response.status == 400) {
+          console.log(error.response.data.detail)
+          alert("Sorry, could not process your request.")
+        }
       });
   }
   return (
@@ -48,22 +53,21 @@ export default function Converter() {
         <CardContent className="p-6">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <div className="font-semibold">Python Dictionary</div>
-              <Textarea
-                className="w-full h-64 rounded-md bg-gray-100 dark:bg-gray-800 dark:text-white p-4"
-                id="python-dict"
-                placeholder="Enter Python dictionary here"
+              <div className="font-semibold" style={{ "textAlign": "center" }}>Python Dictionary</div>
+              <CodeMirror
                 value={dict}
-                onChange={e => setDict(e.target.value)}
+                onChange={e => setDict(e)}
+                height="250px"
+                lang="python"
               />
             </div>
             <div>
-              <div className="font-semibold">JSON</div>
-              <Textarea
-                className="w-full h-64 rounded-md bg-gray-100 dark:bg-gray-800 dark:text-white p-4"
-                id="json-output"
-                placeholder="Converted JSON will appear here"
+              <div className="font-semibold" style={{ "textAlign": "center" }}>JSON</div>
+              <CodeMirror
                 value={json}
+                height="250px"
+                readOnly={true}
+                lang="javascript"
               />
             </div>
           </div>
